@@ -8,7 +8,7 @@ const LiveChat = () => {
   };
 
   return (
-    <div className=" w-[400px] h-[450px] bg-slate-600 rounded-lg p-3 flex flex-col justify-between">
+    <div className=" w-[400px] h-[450px] bg-slate-600 rounded-lg p-3 flex flex-col justify-between px-10">
       <div className="text-white"> helloo</div>
       <div className="py-2 px-2">
         <input
