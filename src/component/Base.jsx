@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
-import VideoIndex from "./VideoIndex";
 import useThumbanalis from "../hooks/useThumbanalis";
+import { Outlet } from "react-router-dom";
 
 const Base = () => {
   const sidebarMenu = useSelector((state) => state.menu.sidebarMenu);
@@ -15,8 +15,8 @@ const Base = () => {
       <Header />
       <div className="flex">
         <div>{sidebarMenu && <Sidebar />}</div>
-        <div>
-          <VideoIndex />
+        <div className="w-full">
+          <Outlet />
         </div>
       </div>
     </div>

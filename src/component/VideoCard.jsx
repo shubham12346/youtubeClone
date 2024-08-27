@@ -1,9 +1,18 @@
 import React from "react";
 
-const VideoCard = ({ thumbnailImmage, videoTitle, channelTitle, id }) => {
+const VideoCard = ({
+  thumbnailImmage,
+  videoTitle,
+  channelTitle,
+  id,
+  handleNavigate,
+}) => {
   return (
     <div>
-      <div className="py-2 px-5 m-2 w-[25rem]  cursor-pointer">
+      <div
+        className="py-2 px-5 m-2 w-[25rem]  cursor-pointer"
+        onClick={() => handleNavigate(id)}
+      >
         <img src={thumbnailImmage} alt="thumbanail" />
         <div className="text-white text-2xl font-semibold  w-full overflow-hidden whitespace-nowrap text-ellipsis ">
           {videoTitle}
