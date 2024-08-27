@@ -1,3 +1,15 @@
+# Features
+
+1. header
+   - Optimized search bar
+2. Sidebar
+   - collapsible menu
+3. Youtube videos list
+   - youtube thumnails of latest videos
+4. Playing a youtube video
+5. Comment list (n nested )
+6. Live chatting features
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
