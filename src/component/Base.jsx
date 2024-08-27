@@ -4,10 +4,10 @@ import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 import useThumbanalis from "../hooks/useThumbanalis";
 import { Outlet } from "react-router-dom";
+import SearchSuggestionModal from "../modal/SearchSuggestionModal";
 
 const Base = () => {
   const sidebarMenu = useSelector((state) => state.menu.sidebarMenu);
-
   useThumbanalis();
 
   return (
