@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  sidebarMenu: false,
+  sidebarMenu: true,
+  latestVideos: [],
 };
 const menuSlice = createSlice({
   name: "menu",
@@ -10,8 +11,12 @@ const menuSlice = createSlice({
     toggleSideBarMenu: (state) => {
       state.sidebarMenu = !state.sidebarMenu;
     },
+    addLatestVideos: (state, action) => {
+      let prev = state.latestVideos;
+      state.latestVideos = [...prev, ...action.payload];
+    },
   },
 });
 
-export const { toggleSideBarMenu } = menuSlice.actions;
+export const { toggleSideBarMenu, addLatestVideos } = menuSlice.actions;
 export default menuSlice.reducer;

@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="bg-black text-white inline-block h-[89vh] ">
+    <div className="bg-black text-white w-[10rem] h-[89vh]  shadow">
       <div className=" py-2 px-6 cursor-pointer">Home</div>
       <div className=" py-2 px-6 cursor-pointer">Shorts</div>
       <div className=" py-2 px-6 cursor-pointer ">Subscription </div>

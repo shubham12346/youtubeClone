@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex bg-black py-4 justify-between items-center relative">
+    <div className="flex bg-black py-4 justify-between items-center relative shadow-lg">
       <div className="flex items-center ">
         <div
           className="px-4"
