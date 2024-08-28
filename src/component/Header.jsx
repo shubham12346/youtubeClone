@@ -4,6 +4,7 @@ import HamBurger from "../hamWhite.png";
 import User from "../user.png";
 import { useDispatch } from "react-redux";
 import SearchSuggestionModal from "../modal/SearchSuggestionModal";
+import useSearchApi from "../hooks/useSearchApi";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Header = () => {
     e.preventDefault();
     setText(e.target.value);
   };
-
+  useSearchApi(text);
   return (
     <>
       <div className="flex bg-black py-4 justify-between items-center relative shadow-lg">
@@ -43,7 +44,6 @@ const Header = () => {
             className="px-4  rounded-l-full bg-black text-white border-slate-500  border w-5/6  lg:w-[30rem]  focus:border-blue-700 "
             onChange={handleOnChange}
             onFocus={() => setModalOpen(true)}
-            onBlur={() => setModalOpen(false)}
           />
           <div className=" border border-slate-500 py-2 px-5 rounded-r-full">
             🔍
