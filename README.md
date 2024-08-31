@@ -1,5 +1,5 @@
 
-# deployed websit :  https://shubham12346.github.io/youtubeClone/video/Rif-RTvmmss
+# deployed websit :   https://shubham12346.github.io/youtubeClone/
 # Features
 
 1. header
