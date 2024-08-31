@@ -16,14 +16,14 @@ const VideoList = () => {
   };
 
   return (
-    <div className="flex flex-wrap h-[75vh]  overflow-y-scroll  mt-10 mx-10 scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300 scrollbar-thin">
-      {latestVideos?.map((item) => (
+    <div className="flex flex-wrap h-[75vh]  overflow-y-scroll  mt-10 mx-10  scrollbar-thumb-sky-700 scrollbar-track-sky-300 scrollbar-thin">
+      {latestVideos?.map((item, index) => (
         <VideoCard
           channelTitle={item?.snippet?.channelTitle}
           thumbnailImmage={item?.snippet?.thumbnails?.medium?.url}
           videoTitle={item?.snippet?.title}
-          key={item?.id}
-          id={item?.id}
+          key={`${index}-${item?.videoId ?? item?.id}`}
+          id={item?.videoId ?? item?.id}
           handleNavigate={handleNavigate}
         />
       ))}

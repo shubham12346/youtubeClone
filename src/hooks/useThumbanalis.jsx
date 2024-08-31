@@ -16,8 +16,8 @@ const useThumbanalis = () => {
   const fetchCars = async () => {
     const res = await fetch(YOUTUBE_URL);
     const data = await res.json();
-    console.log("data", data);
     dispatch({ type: "menu/addLatestVideos", payload: data?.items });
+    dispatch({ type: "menu/toggleLoading", payload: false });
   };
 };
 

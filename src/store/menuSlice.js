@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  searchedText: "",
   sidebarMenu: true,
   latestVideos: [],
+  videoLoader: true,
   suggestions: {},
   currentSuggested: [],
 };
@@ -14,16 +16,17 @@ const menuSlice = createSlice({
       state.sidebarMenu = !state.sidebarMenu;
     },
     addLatestVideos: (state, action) => {
-      let prev = state.latestVideos;
-      state.latestVideos = [...prev, ...action.payload];
+      state.latestVideos = [...action.payload];
     },
     addSuggestions: (state, action) => {
       let newSuggestions = { ...state.suggestions, ...action.payload };
-      console.log("newSuggestions", newSuggestions);
       state.suggestions = newSuggestions;
     },
     showCurrentSuggestion: (state, action) => {
       state.currentSuggested = action.payload;
+    },
+    toggleLoading: (state, action) => {
+      state.videoLoader = action.payload;
     },
   },
 });
@@ -34,4 +37,5 @@ export const {
   addSuggestions,
   showCurrentSuggestion,
 } = menuSlice.actions;
+
 export default menuSlice.reducer;

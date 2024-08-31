@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { youtubeEndUrl, youtubeSearchStart } from "../component/constant";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const useSearchApi = (query) => {
   const suggestions = useSelector((state) => state.menu.suggestions);
@@ -14,22 +14,7 @@ const useSearchApi = (query) => {
         payload: suggestions[query],
       });
     } else {
-      const response = await fetch(
-        `${youtubeSearchStart}${query}${youtubeEndUrl}`
-      );
-      const data = await response.json();
-      const searchSuggestion = data?.items.map((item) => {
-        return {
-          id: item?.id?.videoId,
-          title: item?.snippet?.title,
-          channelTitle: item?.snippet?.channelTitle,
-          thumbnail: item?.snippet?.thumbnails?.medium?.url,
-          videoId: item?.id?.videoId,
-          description: item?.snippet?.description,
-        };
-      });
-      console.log("data", data);
-
+      const searchSuggestion = await getAllTheSearchedValues(query);
       dispatch({
         type: "menu/addSuggestions",
         payload: { [query]: searchSuggestion },
@@ -41,6 +26,33 @@ const useSearchApi = (query) => {
     }
   };
 
+  const getAllTheSearchedValues = async (query) => {
+    const response = await fetch(
+      `${youtubeSearchStart}${query}${youtubeEndUrl}`
+    );
+    const data = await response.json();
+    const searchSuggestion = data?.items.map((item) => {
+      return {
+        title: item?.snippet?.title,
+        channelTitle: item?.snippet?.channelTitle,
+        thumbnail: item?.snippet?.thumbnails?.medium?.url,
+        videoId: item?.id?.videoId,
+        description: item?.snippet?.description,
+        ...item,
+      };
+    });
+
+    return searchSuggestion;
+  };
+
+  const handleSuggestion = async (query) => {
+    const searchSuggestion = await getAllTheSearchedValues(query);
+    dispatch({ type: "menu/addLatestVideos", payload: searchSuggestion });
+    setTimeout(() => {
+      dispatch({ type: "menu/videoLoader", payload: false });
+    }, [1000]);
+  };
+
   useEffect(() => {
     let timer = setTimeout(() => {
       handleSearch(query);
@@ -48,6 +60,10 @@ const useSearchApi = (query) => {
 
     return () => clearTimeout(timer);
   }, [query]);
+
+  return {
+    handleSuggestion,
+  };
 };
 
 export default useSearchApi;

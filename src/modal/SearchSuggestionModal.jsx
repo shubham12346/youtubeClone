@@ -1,26 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-const SearchSuggestionModal = ({ open }) => {
+const SearchSuggestionModal = ({ open, handleNavigate }) => {
   const currentSuggested = useSelector((state) => state.menu.currentSuggested);
-  const navigate = useNavigate();
 
   if (!open) {
     return null;
   }
-  const handleNavigate = (id) => {
-    console.log("`video/${id}`", `video/${id}`);
-    navigate(`video/${id}`);
-  };
   return (
-    <div className="absolute  text-white left-[33%] h-[400px] bg-slate-700 w-[30rem] p-2 rounded-md py-4 overflow-y-scroll  overflow-y-scroll  mt-10 mx-10 scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300 scrollbar-thin">
-      {currentSuggested?.map((suggestion) => (
+    <div className="absolute z-10  text-white left-[23%] top-[27px] h-[400px] bg-slate-700 w-[35rem] p-2 rounded-md py-4 overflow-y-scroll   mt-10 mx-10  scrollbar-thumb-sky-700 scrollbar-track-sky-300 scrollbar-thin">
+      {currentSuggested?.map((suggestion, index) => (
         <div
           className="px-4  my-2  cursor-pointer"
-          key={suggestion?.id}
+          key={`${index} - ${suggestion?.videoId}`}
           onClick={() => {
-            handleNavigate(suggestion?.id);
+            handleNavigate(suggestion?.videoId);
           }}
         >
           {suggestion.title}
