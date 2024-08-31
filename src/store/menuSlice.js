@@ -7,6 +7,7 @@ const initialState = {
   videoLoader: true,
   suggestions: {},
   currentSuggested: [],
+  randomComments: [],
 };
 const menuSlice = createSlice({
   name: "menu",
@@ -28,6 +29,9 @@ const menuSlice = createSlice({
     toggleLoading: (state, action) => {
       state.videoLoader = action.payload;
     },
+    addRandomComments: (state, action) => {
+      state.randomComments.push(action.payload);
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   addLatestVideos,
   addSuggestions,
   showCurrentSuggestion,
+  addRandomComments,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;

@@ -60,15 +60,17 @@ const Header = () => {
             />
           </div>
           <div
-            className="flex items-center px-1 cursor-pointer"
             onClick={() => {
               navigate("");
             }}
+            className="flex"
           >
-            <img src={YoutubeLogo} className="h-6  " alt="youtube logo " />
-          </div>
-          <div className="hidden md:block text-white text-3xl cursor-pointer ">
-            YouTube
+            <div className="flex items-center px-1 cursor-pointer">
+              <img src={YoutubeLogo} className="h-6  " alt="youtube logo " />
+            </div>
+            <div className="hidden md:block text-white text-3xl cursor-pointer ">
+              YouTube
+            </div>
           </div>
         </div>
         <form

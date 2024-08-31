@@ -4,14 +4,14 @@ import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 import useThumbanalis from "../hooks/useThumbanalis";
 import { Outlet } from "react-router-dom";
-import SearchSuggestionModal from "../modal/SearchSuggestionModal";
+import { ToastContainer } from "react-toastify";
 
 const Base = () => {
   const sidebarMenu = useSelector((state) => state.menu.sidebarMenu);
   useThumbanalis();
 
   return (
-    <div className="bg-black w-screen h-screen">
+    <div className="bg-black w-full h-full">
       <Header />
       <div className="flex">
         <div>{sidebarMenu && <Sidebar />}</div>
@@ -19,6 +19,7 @@ const Base = () => {
           <Outlet />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

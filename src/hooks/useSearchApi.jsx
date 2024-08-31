@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { youtubeEndUrl, youtubeSearchStart } from "../component/constant";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const useSearchApi = (query) => {
   const suggestions = useSelector((state) => state.menu.suggestions);
@@ -27,22 +28,29 @@ const useSearchApi = (query) => {
   };
 
   const getAllTheSearchedValues = async (query) => {
-    const response = await fetch(
-      `${youtubeSearchStart}${query}${youtubeEndUrl}`
-    );
-    const data = await response.json();
-    const searchSuggestion = data?.items.map((item) => {
-      return {
-        title: item?.snippet?.title,
-        channelTitle: item?.snippet?.channelTitle,
-        thumbnail: item?.snippet?.thumbnails?.medium?.url,
-        videoId: item?.id?.videoId,
-        description: item?.snippet?.description,
-        ...item,
-      };
-    });
-
-    return searchSuggestion;
+    try {
+      const response = await fetch(
+        `${youtubeSearchStart}${query}${youtubeEndUrl}`
+      );
+      const data = await response.json();
+      const searchSuggestion = data?.items.map((item) => {
+        return {
+          title: item?.snippet?.title,
+          channelTitle: item?.snippet?.channelTitle,
+          thumbnail: item?.snippet?.thumbnails?.medium?.url,
+          videoId: item?.id?.videoId,
+          description: item?.snippet?.description,
+          ...item,
+        };
+      });
+      toast("Successfully Videos fetched from YouTube", {
+        className: "text-white",
+      });
+      return searchSuggestion;
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
   };
 
   const handleSuggestion = async (query) => {
